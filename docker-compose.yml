@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  3x-ui:
+    image: mhsanaei/3x-ui:latest
+    container_name: 3x-ui
+    restart: unless-stopped
+    ports:
+      - "8443:8443/tcp"
+      - "8388:8388/tcp"  # Shadowsocks TCP
+      - "8388:8388/udp"
+    environment:
+      - PUID=1000
+      - PGID=1000
+    networks:
+       root_wg-easy:
+          ipv4_address: 10.8.1.11
+
+networks:
+   root_wg-easy:
+     external: true
